@@ -5,9 +5,11 @@ Extract data from four online newspapers of your choice using a spider, and do t
 a. Business
 b. Politics
 c. Arts/Culture/Celebrities
-d. Sports [40]
-2. Store the data in a csv(s) file(s) [10]
-3. Use a clustering algorithm to create clusters best on the categories of the stories. [20]
+d. Sports 
+2. Store the data in a csv(s) file(s) 
+3. Use a clustering algorithm to create clusters best on the categories of the stories. 
 4. Create a web based platform that displays a cluster and the urls of related stories in that
 cluster.
-[30]
+
+## The link to the deployed application:
+https://web-mining-and-recommender-systems-puf6ohwpydd3upj4emcmmn.streamlit.app/
