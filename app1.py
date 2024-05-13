@@ -5,6 +5,9 @@ from sklearn.cluster import KMeans
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
+# Function to preprocess text
+def preprocess_text(text):
+    return text
 
 # Function to cluster text data
 def cluster_text(text_data, num_clusters):
