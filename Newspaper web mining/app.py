@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 # Function to preprocess text
 def preprocess_text(text):
-    # Add your text preprocessing code here
     return text
 
 # Function to cluster text data
@@ -19,7 +18,7 @@ def cluster_text(text_data, num_clusters):
     return km, vectorizer
 
 # Function to visualize clusters using word clouds
-def visualize_clusters(km, vectorizer, num_clusters):
+def visualize_clusters(km, vectorizer, num_clusters, documents, titles, links):
     centroids = km.cluster_centers_.argsort()[:, ::-1]
     terms = vectorizer.get_feature_names_out()
 
@@ -30,6 +29,14 @@ def visualize_clusters(km, vectorizer, num_clusters):
         frequencies = {terms[ind]: term_frequencies[ind] for ind in sorted_terms}
         wordcloud = WordCloud(background_color="white", max_words=50).generate_from_frequencies(frequencies)
         st.image(wordcloud.to_array(), caption=f'Word Cloud for Cluster {i+1}', width=500)
+        
+        # Display Titles and URLs of news articles in the cluster
+        st.markdown("### Titles and URLs of News Articles:")
+        cluster_indices = documents[km.labels_ == i].index
+        for idx in cluster_indices:
+            st.write(f"**Title:** {titles[idx]}")
+            st.write(f"**Link:** {links[idx]}")
+            st.markdown("---")
 
 def main():
     st.title("News Articles Clustering App")
@@ -45,6 +52,8 @@ def main():
         # Read CSV data
         all_data = pd.read_csv(uploaded_file)
         documents = all_data['Content'].astype(str)
+        titles = all_data['Title']
+        links = all_data['Link']
 
         # Preprocess text
         preprocessed_documents = documents.apply(preprocess_text)
@@ -57,8 +66,8 @@ def main():
         st.sidebar.subheader("Clustering Results")
         km, vectorizer = cluster_text(preprocessed_documents, num_clusters)
 
-        # Visualize clusters using word clouds
-        visualize_clusters(km, vectorizer, num_clusters)
+        # Visualize clusters using word clouds and display Titles and URLs
+        visualize_clusters(km, vectorizer, num_clusters, documents, titles, links)
 
 if __name__ == "__main__":
     main()
