@@ -1,4 +1,4 @@
-# WEB MINING AND RECOMMENDER SYSTEMS ASSIGNMENT 3
+# NEWSPAPER TEXT MINING
 
 Extract data from four online newspapers of your choice using a spider, and do the following:
 1. In each newspaper extract stories in these following categories
